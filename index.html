@@ -1,167 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon//favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon//favicon-16x16.png">
-    <link rel="manifest" href="/img/favicon//site.webmanifest">
-    <link rel="mask-icon" href="/img/favicon//safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <script src="https://kit.fontawesome.com/79677cf5e2.js" crossorigin="anonymous"></script>
-    <!-- style -->
-    <link rel="stylesheet" href="style.css">
-    
-    <title>My Project</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta name="description" content="Personal site of Narayan Krishna Shrestha: journeys, hobbies and contact.">
+<title>Narayan Krishna Shrestha</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Hind:wght@400;500;600&display=swap">
+<style>
+/* Layout: full-bleed lake photograph with the name set over it, then a quiet trail of journeys, hobbies, contact. Left aligned throughout. */
+:root{
+  --bg:#f2f6f5;        /* snow */
+  --surface:#e4edeb;   /* mist */
+  --fg:#0f2a33;        /* deep lake ink */
+  --muted:#4a6169;
+  --accent:#b8741a;    /* weathered prayer-post ochre */
+  --lake:#1f7f8c;      /* Rara water */
+  --line:#c5d5d2;
+  --on-photo:#ffffff;
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --body:'Hind','Noto Sans Devanagari','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1d23;--surface:#142a32;--fg:#e8f1ef;--muted:#9bb3b8;--accent:#e2a24a;--lake:#5cc0cc;--line:#26424b;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1d23;--surface:#142a32;--fg:#e8f1ef;--muted:#9bb3b8;--accent:#e2a24a;--lake:#5cc0cc;--line:#26424b;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 1.0625rem/1.7 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.02em;line-height:1.05}
+.wrap{max-width:68rem;margin-inline:auto}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);
+  margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.5rem;flex-wrap:wrap}
+.mark{font:800 1.15rem var(--display);text-decoration:none;letter-spacing:-.03em}
+nav{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+nav a{text-decoration:none;font-weight:500;color:var(--muted);padding:.25rem 0;border-bottom:2px solid transparent}
+nav a:hover{color:var(--fg);border-color:var(--accent)}
+#theme{font:500 .9rem var(--body);background:none;color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:.25rem .8rem;cursor:pointer}
+#theme:hover{border-color:var(--accent)}
+
+/* hero */
+.hero{position:relative;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));
+  padding-inline:max(16px,env(safe-area-inset-left,0px));
+  min-height:min(46rem,82svh);display:flex;align-items:flex-end;color:var(--on-photo);overflow:hidden;background:#0c1d23}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;max-width:none}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,24,30,.05) 30%,rgba(8,24,30,.78) 100%)}
+.hero .wrap{position:relative;z-index:1;width:100%;padding-block:3rem 2.5rem}
+.hero h1{font-size:clamp(3rem,10.5vw,8.5rem);font-weight:800;letter-spacing:-.045em;line-height:.92}
+.hero h1 span{display:block}
+.hero p{max-width:34rem;margin:1.5rem 0 0;font-size:1.2rem;line-height:1.55}
+.spot{display:flex;gap:.75rem;align-items:baseline;flex-wrap:wrap;margin-top:1.25rem;font-size:.95rem;opacity:.92}
+.spot b{font:700 1.3rem var(--body)}
+
+/* sections */
+section{padding-block:5rem}
+.head{display:grid;grid-template-columns:minmax(0,14rem) minmax(0,1fr);gap:2rem;align-items:start;margin-bottom:2.5rem}
+.head h2{font-size:clamp(1.8rem,4vw,2.6rem)}
+.head p{margin:0;color:var(--muted);max-width:38rem}
+@media(max-width:700px){.head{grid-template-columns:1fr;gap:.75rem}section{padding-block:3.5rem}}
+
+/* journeys: one wide, two stacked */
+.trail{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:1.5rem}
+.trail figure{margin:0;display:flex;flex-direction:column;gap:.75rem;min-width:0}
+.trail img{width:100%;display:block;object-fit:cover;border-radius:4px;background:var(--surface)}
+.trail .big img{aspect-ratio:4/3}
+.trail .side{display:grid;gap:1.5rem;align-content:start}
+.trail .side img{aspect-ratio:16/10}
+.trail figcaption h3{font-size:1.5rem;margin-bottom:.15rem}
+.trail figcaption p{margin:0;color:var(--muted);font-size:1rem}
+.trail figure.karn{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1.25rem;align-items:center}
+.trail .karn img{aspect-ratio:1/1}
+@media(max-width:760px){.trail{grid-template-columns:1fr}}
+
+/* hobbies */
+.band{background:var(--surface);margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.hob{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5rem}
+.hob article{border-top:3px solid var(--lake);padding-top:1.25rem;min-width:0}
+.hob h3{font-size:1.6rem;margin-bottom:.75rem}
+.hob blockquote{margin:0;font-size:1.05rem}
+.hob cite{display:block;margin-top:.6rem;color:var(--muted);font-style:normal;font-size:.95rem}
+@media(max-width:760px){.hob{grid-template-columns:1fr;gap:2rem}}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:end}
+.contact h2{font-size:clamp(2.2rem,6vw,4.2rem);font-weight:800}
+.contact address{font-style:normal;color:var(--muted);margin-top:1rem;font-size:1.15rem}
+.links{display:flex;gap:.75rem;flex-wrap:wrap}
+.links a{text-decoration:none;font-weight:600;padding:.8rem 1.4rem;border:2px solid var(--fg);border-radius:999px}
+.links a:hover{background:var(--fg);color:var(--bg)}
+.links a.first{background:var(--accent);border-color:var(--accent);color:#fff}
+.links a.first:hover{filter:brightness(.92);background:var(--accent);color:#fff}
+@media(max-width:760px){.contact{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding-block:1.75rem;color:var(--muted);font-size:.95rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+
+/* one entrance moment: the hero name */
+@media(prefers-reduced-motion:no-preference){
+  .hero h1 span{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+  .hero h1 span:nth-child(2){animation-delay:.12s}
+  .hero img{animation:settle 2.4s ease-out both}
+}
+@keyframes rise{from{transform:translateY(.35em);opacity:0}to{transform:none;opacity:1}}
+@keyframes settle{from{transform:scale(1.06)}to{transform:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
-    <div id="containter">
-        <!-- header -->
-        <header>
-            <!-- topbar -->
-            <div id="topbar" class="unipadding">
-                <p id="tollfree">Tolfree: 12346-56</p>
-                <div id="social-icon">
-                    <a href="https://www.facebook.com/narayan.shrestha.106/"><i class="fab fa-facebook"></i></a>
-                    <a href="https://twitter.com/home"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/narayankrishnashrestha/"><i class="fab fa-instagram"></i></a>
-                    <a href=""><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.youtube.com/channel/UCtHLSfC-CVWiJmJ0QAuKIsQ"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            <!-- logo bar -->
-            
-            <div id="logobar" class="unipadding">
-                <img src="./img/logo.jpg" alt="logo">
-            </div>
-            <!-- navbar -->
-            <div id="navbar" class="unipadding">
-                <ul>
-                        <li class="current" ><a href="index.html">Home</a></li>
-                        <li><a href="gallery.html" target="_blank">Gallery</a></li>
-                        <li><a href="Portfolio.html" target="_blank">Portfolio</a></li>
-                        <li><a href="">About Me</a></li>
-                        <li><a href="">Contact Me</a></li>
-                    
-                </ul>
-            </div>
-        </header>
-        <body>
-            <div class="poster">
-               <h3>रारा ताल             
-               </h3>
-               <p>सुन्दरताको भण्डार सारा के खनाया यसै रारामा राराकी अप्सरा <br>
-                <span> म.वि.वि.शाह</span></p>
-            </div>
 
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="#top">Narayan Krishna Shrestha</a>
+    <nav aria-label="Main">
+      <a href="#journeys">Journeys</a>
+      <a href="#hobbies">Hobbies</a>
+      <a href="#contact">Contact</a>
+      <button id="theme" type="button" aria-label="Switch light or dark theme">Dark</button>
+    </nav>
+  </div>
+</header>
 
-
-
-            
-            <!-- Whyus -->
-            <div id="hobbies" class="unipadding">
-                <h1 class="Redwhyus">Hobbies</h1>
-                <div class="section33">
-                    <i class="fas fa-route"></i>
-                    <!-- <img src="/img/h1logo.jpg" alt=""> -->
-                    <h2>Traveling</h2>
-                    <p>"A Journey of a thousand miles begins with a single step" <br> <strong> -Lao Tzu</strong></p>
-
-                </div>
-                <div class="section33">                    
-                    <i class="fas fa-music"></i>
-                    <h2>Listning Music</h2>
-                    <p>"Music is Life itself"<BR><strong>LOUIS ARMSTRONG</strong></p>
-                    
-                </div>
-                <div class="section33">
-                    <i class="fas fa-biking"></i>
-                     <!-- <img src="/img/h3logo.jpg" alt=""> -->
-                     <h2>Riding</h2>
-                     <p>"NO PLAN.NO MAPS.NO GPS.<br>NO RULES."<br> JUST RIDE</p>
-                                      
-                </div>
-                
-                
-            </div>
-        <!-- Contact -->
-        <div id="contact-container" class="unipadding">
-            <div class="section70">
-                <h1>
-                    TOKHA-08,KATHMANDU,NEPAL
-                </h1>
-            </div>
-            <div class="section30">
-                <a href="" id="contact-btn">contact me</a>
-            </div>
-        </div>
-        <!-- Blog -->
-        <div id="gallery" class="unipadding">
-            <h1 class="Redwhyus">Gallery</h1>
-            <div class="section33">
-                <img src="./img/jiri.JPG" alt="">
-                <h2>Jiri</h2>
-                <p>Lorem ipsum, dolor sit amet consectetur laborum dolor velit explicabo expedita.</p><a href="">Readmore</a>
-            </div>
-            <div class="section33">
-                <img src="./img/karnali.JPG" alt="">
-                <h2>karnali</h2>
-                <p>Lorem ipsum, dolor sit beatae laborum dolor velit explicabo expedita .</p><a href="">Readmore</a>
-            </div>
-            <div class="section33">
-                 <img src="./img/Mustang.JPG" alt="">
-                 <h2>Mustang</h2>
-                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. r velit explicabo expedita .</p><a href="">Readmore</a>
-            
-            </div>            
-        </div>
-        
-        <!-- footer -->
-        <footer>
-            <div id="imp-link" class="unipadding">
-                <dvi class="div33">
-                    <h3>About Me</h3>
-                    <p class="content-aboutme">Lorem ipsum dolor sit amet, consectetur adipisicing elit.  omnis, obcaecati neque repellat harum hic saepe. <br></br>Aliquam ullam, ut, quaerat fugiat inventore voluptatum in tenetur quis pariatur culpa deserunt. Illum.
-                    
-                    
-                    </p>
-                </dvi>
-                <dvi class="div33" id="footer-menu-contaner"> 
-                    <h3>Important Link</h3>
-                    <ul id="footer-menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="gallery.html" target="_blank">Gallery</a></li>
-                        <li><a href="Portfolio.html" target="_blank">Portfolio</a></li>
-                        <li><a href="">About Me</a></li>
-                        <li><a href="">Contact Me</a></li>
-                    </ul>
-                </dvi>
-                <dvi class="div33">
-                    <h3>
-                        Contact Me
-                    </h3>
-                    <p class="content-contactme">
-                            <i class="facebook fab fa-facebook"></i>
-                            <i class="twitter fab fa-twitter"></i>
-                            <i class="instagram fab fa-instagram"></i>
-                            <i class="viber fab fa-viber"></i>
-                            <i class="youtube fab fa-youtube"></i>
-
-                    </p>
-                </dvi>
-            </div>
-            <div id="copyright">
-            <p>Copyright &copy; Narayan Krishna Shrestha</p>
-            </div>      
-            
-        </footer>
+<main id="top">
+  <div class="hero">
+    <img src="img/rara.jpg" alt="Narayan standing on a wooden jetty at Rara Lake with arms stretched wide, facing the water and forested hills">
+    <div class="wrap">
+      <h1><span>Narayan</span><span>Krishna Shrestha</span></h1>
+      <p>Traveller, rider and music lover from Kathmandu. These are the roads and lakes I keep going back to.</p>
+      <div class="spot"><b>रारा ताल</b><span>Rara Lake, Mugu, 2,990 m</span></div>
     </div>
-   
-    <!-- script -->
-    <script src="js/script.js"></script>    
+  </div>
+
+  <section id="journeys">
+    <div class="wrap">
+      <div class="head">
+        <h2>Journeys</h2>
+        <p>Three trips from my camera roll, from the hills around Jiri to the dry valleys of Mustang.</p>
+      </div>
+      <div class="trail">
+        <figure class="big">
+          <img src="img/jiri.jpg" alt="Terraced fields and white houses of Jiri below forested hills, with a white stupa on the ridge" loading="lazy">
+          <figcaption><h3>Jiri</h3><p>Terraced fields, tin roofs and a white stupa on the ridge.</p></figcaption>
+        </figure>
+        <div class="side">
+          <figure>
+            <img src="img/mustang.jpg" alt="Narayan beside a blue motorbike in a dry riverbed with snow peaks behind" loading="lazy">
+            <figcaption><h3>Mustang</h3><p>A riverbed ride with snow peaks ahead.</p></figcaption>
+          </figure>
+          <figure class="karn">
+            <img src="img/karnali.jpg" alt="Narayan in sunglasses on a cable-stayed bridge over the Karnali" loading="lazy">
+            <figcaption><h3>Karnali</h3><p>Standing on the bridge.</p></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <section id="hobbies">
+      <div class="wrap">
+        <div class="head">
+          <h2>Hobbies</h2>
+          <p>What I do when work is done.</p>
+        </div>
+        <div class="hob">
+          <article>
+            <h3>Travelling</h3>
+            <blockquote>“A journey of a thousand miles begins with a single step.”</blockquote>
+            <cite>Lao Tzu</cite>
+          </article>
+          <article>
+            <h3>Listening to music</h3>
+            <blockquote>“Music is life itself.”</blockquote>
+            <cite>Louis Armstrong</cite>
+          </article>
+          <article>
+            <h3>Riding</h3>
+            <blockquote>No plan. No maps. No GPS. No rules. Just ride.</blockquote>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section id="contact">
+    <div class="wrap contact">
+      <div>
+        <h2>Say hello.</h2>
+        <address>Tokha-08, Kathmandu, Nepal</address>
+      </div>
+      <div class="links">
+        <a class="first" href="https://www.instagram.com/narayankrishnashrestha/">Instagram</a>
+        <a href="https://www.facebook.com/narayan.shrestha.106/">Facebook</a>
+        <a href="https://www.youtube.com/channel/UCtHLSfC-CVWiJmJ0QAuKIsQ">YouTube</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© <span id="yr">2026</span> Narayan Krishna Shrestha</span><span>narayankrishnashrestha.com.np</span></div>
+</footer>
+
+<script>
+(function(){
+  var b=document.getElementById('theme'),r=document.documentElement;
+  function dark(){var t=r.getAttribute('data-theme');return t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches}
+  function sync(){b.textContent=dark()?'Light':'Dark'}
+  b.addEventListener('click',function(){r.setAttribute('data-theme',dark()?'light':'dark');sync()});
+  sync();
+  document.getElementById('yr').textContent=new Date().getFullYear();
+})();
+</script>
 </body>
 </html>
